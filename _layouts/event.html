@@ -1,0 +1,38 @@
+---
+layout: index
+section: events events-detail
+
+---
+			<div id="Content">
+				<h1>{{ page.title }}</h1>
+				<dl>
+					<dt>When</dt>
+					<dd>{{ page.date | date: "%H:%M %A %B %d %Y" }}</dd>
+					<dt>Where</dt>
+					<dd>{{ page.location }}</dd>
+					<dt>Description</dt>
+					<dd>{{ page.content }}</dd>
+{% if page.contact %}
+					<dt>Contact</dt>
+					<dd>{{ page.contact }}</dd>
+{% endif %}
+{% if page.lanyrd %}
+					<dt>Attending?</dt>
+					<dd>Lets us know on Lanyrd <a href="{{ page.lanyrd }}">{{ page.lanyrd }}</a></dd>
+{% endif %}
+{% if page.attending %}
+					<dt>Attending?</dt>
+					<dd>Lets us know on Attending <a href="{{ page.attending }}">{{ page.attending }}</a></dd>
+{% endif %}
+{% if page.meetup %}
+					<dt>Attending?</dt>
+					<dd><a href="{{ page.meetup }}">RSVP on MeetUp</a></dd>
+{% endif %}
+{% if page.upcoming %}
+					<dt>Upcoming</dt>
+					<dd><a href="http://upcoming.yahoo.com/event/{{ page.upcoming }}/">http://upcoming.yahoo.com/event/{{ page.upcoming }}/</a></dd>
+{% endif %}
+				</dl>
+				<p>Go back to the <a href="/events/">events listings</a>.</p>
+			</div>
+{% include sidebar.html %}

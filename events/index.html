@@ -1,0 +1,24 @@
+---
+layout: index
+section: events events-home
+
+title: Events
+meta_description:
+meta_keywords:
+
+---
+<div id="Content">
+<h1>GeekUp Events</h1>
+<p>GeekUp events are free to attend. Each event is different some are purely social and some have talks but you'll definitely find beer and a good ole geeky chat.</p>
+{% include locations.html %}
+<h2>Upcoming Events</h2>
+<ul>
+{% for post in site.categories.events reversed %}{% if post.upcomingevent %}<li><a href="{{ post.url }}">{{ post.title }} - {{ post.date | date: "%B %d %Y" }}</a></li>{% endif %}{% endfor %}
+</ul>
+<h2>Previous Events</h2>
+<ul>
+{% for post in site.categories.events %}{% unless post.upcomingevent %}<li><a href="{{ post.url }}">{{ post.title }} - {{ post.date | date: "%B %d %Y" }}</a></li>{% endunless %}
+{% endfor %}
+</ul>
+</div>
+{% include sidebar.html %}
