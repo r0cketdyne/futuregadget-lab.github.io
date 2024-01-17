@@ -1,1 +1,0 @@
-# futuregadget-lab.github.io

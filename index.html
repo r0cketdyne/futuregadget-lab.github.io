@@ -1,17 +1,19 @@
 ---
-layout: index
-section: home home-index
-permalink: /
-
-title: GeekUp
-meta_description:
-meta_keywords:
-
+layout: default
+title: Tigraine - Daniel Hoelbling
 ---
-<div id="Content">
-<h1>What is GeekUp?</h1>
-<p>GeekUp is a community of <strong>web designers</strong>, <strong>web developers</strong>, and other <strong>tech-minded</strong> folk from the UK. It's a grassroots knowledge sharing and networking social for folks involved or interested in the web and technology industry.</p>
-{% include locations.html %}
-{% comment %}{% include alerts-subscribe.html %}{% endcomment %}
+
+{% for post in site.posts limit:10 %}
+<div class="post">
+	<h2><a href=".{{post.url}}" rel="bookmark" title="{{post.title}}">{{post.title}}</a></h2>
+	<small>{{post.date | date: "%B %d, %Y"}} by Daniel Hoelbling</small>
+
+	<div class="entry">
+		{{post.content}}
+	</div>
+	<p class="postmetadata">
+		<a href="{{post.id}}/#comments" title="Comment on {{page.title}}">
+			View Comments</a>
+	</p>
 </div>
-{% include sidebar.html %}
+{% endfor %}

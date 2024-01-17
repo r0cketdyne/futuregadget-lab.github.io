@@ -1,36 +1,25 @@
-task :default => :build
+require 'fileutils'
 
-def windows?
-  Config::CONFIG['host_os'] =~ /mswin/
+task :find do
+	puts "Searching for wlwContent"
+	files = Dir.entries("_posts")
+	files.each() do |file|
+		if (file != "." and file != "..") then
+			openFile = File.open("_posts/#{file}", "r")
+			content = ""
+			openFile.each {|line| content += line}
+
+			if (content =~ /wlWriterSmartContent/i)
+				puts "#{file} still contains wlw Source"
+			end
+		end
+	end
 end
 
-desc 'Jekyll build'
-task :build do
-  jekyll
+task :default do
+	sh "Jekyll --pygments"
 end
 
-desc 'Jekyll --auto'
-task :auto do
-  jekyll('--auto')
-end
-
-desc 'Jekyll --server --auto'
-task :server do
-  jekyll('--server --auto')
-end
-
-desc 'Deploy to live, replaces live server with _site'
-task :live do
-  jekyll
-  sh 'rsync -rtzhv --delete _site/ dhg:/home/sgeekup/sites/geekup.org/public/'
-end
-
-def jekyll(opts = '')
-  if windows?
-    sh 'rmdir /s /q _site'
-    sh 'mkdir _site'
-  elsif
-    sh 'rm -rf _site'
-  end
-  sh 'jekyll ' + opts
+task :test do
+	sh "Jekyll --pygments --server 3000 --auto"
 end
